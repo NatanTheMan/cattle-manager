@@ -8,6 +8,19 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Delete cattle
+// @Description Delete a cattle
+// @Tags Cattle
+// @Accept json
+// @Produce json
+// @Param id query string true "Cattle identification"
+// @Success 200 {object} DeleteCattleResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /cattle [delete]
 func DeleteCattleHandler(ctx *gin.Context) {
 	id := ctx.Query("id")
 	if id == "" {

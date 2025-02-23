@@ -15,6 +15,13 @@ definitions:
       message:
         type: string
     type: object
+  handler.DeleteCattleResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CattleResponse'
+      message:
+        type: string
+    type: object
   handler.ErrorResponse:
     properties:
       errorCode:
@@ -43,6 +50,38 @@ info:
   contact: {}
 paths:
   /cattle:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a cattle
+      parameters:
+      - description: Cattle identification
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.DeleteCattleResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Delete cattle
+      tags:
+      - Cattle
     post:
       consumes:
       - application/json
