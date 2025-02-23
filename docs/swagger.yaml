@@ -45,6 +45,18 @@ definitions:
       message:
         type: string
     type: object
+  handler.UpdateCattleRequest:
+    properties:
+      name:
+        type: string
+    type: object
+  handler.UpdateCattleResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CattleResponse'
+      message:
+        type: string
+    type: object
   schemas.CattleResponse:
     properties:
       createdAt:
@@ -153,6 +165,44 @@ paths:
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
       summary: Create cattle
+      tags:
+      - Cattle
+    put:
+      consumes:
+      - application/json
+      description: Update a cattle
+      parameters:
+      - description: Cattle identification
+        in: query
+        name: id
+        required: true
+        type: string
+      - description: Cattle data
+        in: body
+        name: cattle
+        required: true
+        schema:
+          $ref: '#/definitions/handler.UpdateCattleRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.UpdateCattleResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Update cattle
       tags:
       - Cattle
   /cattles:

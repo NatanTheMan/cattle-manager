@@ -7,6 +7,20 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Update cattle
+// @Description Update a cattle
+// @Tags Cattle
+// @Accept json
+// @Produce json
+// @Param id query string true "Cattle identification"
+// @Param cattle body UpdateCattleRequest true "Cattle data"
+// @Success 200 {object} UpdateCattleResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 404 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /cattle [put]
 func UpdateCattleHandler(ctx *gin.Context) {
 	request := UpdateCattleRequest  {}
 

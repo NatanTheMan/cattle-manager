@@ -48,3 +48,8 @@ type ListCattlesResponse struct {
 	Message string                   `json:"message"`
 	Data    []schemas.CattleResponse `json:"data"`
 }
+
+type UpdateCattleResponse struct {
+	Message string                 `json:"message"`
+	Data    schemas.CattleResponse `json:"data"`
+}

@@ -58,6 +58,63 @@ const docTemplate = `{
                     }
                 }
             },
+            "put": {
+                "description": "Update a cattle",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Cattle"
+                ],
+                "summary": "Update cattle",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Cattle identification",
+                        "name": "id",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "description": "Cattle data",
+                        "name": "cattle",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/handler.UpdateCattleRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/handler.UpdateCattleResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handler.ErrorResponse"
+                        }
+                    }
+                }
+            },
             "post": {
                 "description": "Create a new cattle",
                 "consumes": [
@@ -244,6 +301,25 @@ const docTemplate = `{
             }
         },
         "handler.ShowCattleResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/schemas.CattleResponse"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.UpdateCattleRequest": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "handler.UpdateCattleResponse": {
             "type": "object",
             "properties": {
                 "data": {
