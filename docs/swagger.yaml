@@ -29,6 +29,15 @@ definitions:
       message:
         type: string
     type: object
+  handler.ListCattlesResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/schemas.CattleResponse'
+        type: array
+      message:
+        type: string
+    type: object
   handler.ShowCattleResponse:
     properties:
       data:
@@ -144,6 +153,25 @@ paths:
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
       summary: Create cattle
+      tags:
+      - Cattle
+  /cattles:
+    get:
+      consumes:
+      - application/json
+      description: List all cattles
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ListCattlesResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: List cattles
       tags:
       - Cattle
 swagger: "2.0"

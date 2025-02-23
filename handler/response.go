@@ -43,3 +43,8 @@ type ShowCattleResponse struct {
 	Message string                 `json:"message"`
 	Data    schemas.CattleResponse `json:"data"`
 }
+
+type ListCattlesResponse struct {
+	Message string                   `json:"message"`
+	Data    []schemas.CattleResponse `json:"data"`
+}
