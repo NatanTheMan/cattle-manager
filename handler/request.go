@@ -27,3 +27,15 @@ func (r *CreateCattleRequest) Validate() error {
 	}
 	return nil
 }
+
+type UpdateCattleRequest struct {
+	Name string `json:"name"`
+}
+
+func (r *UpdateCattleRequest) Validate() error {
+	if r.Name != "" {
+		return nil
+	}
+	logger.Errorf("name is: %v", r.Name)
+	return fmt.Errorf("name must be provided")
+}
