@@ -2,6 +2,7 @@ package handler
 
 import (
 	"net/http"
+	"strings"
 
 	"github.com/NatanTheMan/cattle-manager/schemas"
 	"github.com/gin-gonic/gin"
@@ -33,7 +34,7 @@ func CreateCattleHandler(ctx *gin.Context) {
 	cattle := schemas.Cattle{
 		Name:    request.Name,
 		Earring: request.Earring,
-		Gender:  request.Gender,
+		Gender:  strings.ToUpper(request.Gender),
 	}
 
 	if err := db.Create(&cattle).Error; err != nil {

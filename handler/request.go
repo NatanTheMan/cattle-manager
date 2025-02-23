@@ -1,6 +1,9 @@
 package handler
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func errParamIsRequired(name, typ string) error {
 	return fmt.Errorf("param: %s (type: %s) is required", name, typ)
@@ -22,6 +25,9 @@ func (r *CreateCattleRequest) Validate() error {
 	if len(r.Gender) > 1 {
 		return fmt.Errorf("gender must have 1 digits")
 	}
+  if strings.ToUpper(r.Gender) != "M" &&strings.ToUpper(r.Gender)!="F"{
+    return fmt.Errorf("gender have to be 'M' or 'F'")
+  }
 	if r.Earring == "" {
 		return errParamIsRequired("erring", "string")
 	}
