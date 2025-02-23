@@ -7,6 +7,18 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// @BasePath /api/v1
+
+// @Summary Create cattle
+// @Description Create a new cattle
+// @Tags Cattle
+// @Accept json
+// @Produce json
+// @Param request body CreateCattleRequest true "Request body"
+// @Success 200 {object} CreateCattleResponse
+// @Failure 400 {object} ErrorResponse
+// @Failure 500 {object} ErrorResponse
+// @Router /cattle [post]
 func CreateCattleHandler(ctx *gin.Context) {
 	request := CreateCattleRequest{}
 
@@ -18,11 +30,11 @@ func CreateCattleHandler(ctx *gin.Context) {
 		return
 	}
 
-  cattle := schemas.Cattle{
-    Name:request.Name,
-    Earring:request.Earring,
-    Gender:request.Gender,
-  }
+	cattle := schemas.Cattle{
+		Name:    request.Name,
+		Earring: request.Earring,
+		Gender:  request.Gender,
+	}
 
 	if err := db.Create(&cattle).Error; err != nil {
 		logger.Errorf("error creating cattle: %v", err)
@@ -30,5 +42,5 @@ func CreateCattleHandler(ctx *gin.Context) {
 		return
 	}
 
-  sendSuccess(ctx,  "create-cattle", cattle)
+	sendSuccess(ctx, "create-cattle", cattle)
 }

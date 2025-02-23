@@ -1,8 +1,7 @@
 .PHONY: default run run-with-docs build test docs clean
-APP_NAME:cattle-manager
+APP_NAME: cattle-manager
 
-default: 
-	run
+default:	run
 
 run:
 	@go run main.go
