@@ -113,12 +113,15 @@ paths:
     get:
       consumes:
       - application/json
-      description: Delete one cattle
+      description: Show one cattle
       parameters:
       - description: Cattle identification
         in: query
         name: id
-        required: true
+        type: string
+      - description: Cattle earring
+        in: query
+        name: earring
         type: string
       produces:
       - application/json

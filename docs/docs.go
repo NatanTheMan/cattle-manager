@@ -17,7 +17,7 @@ const docTemplate = `{
     "paths": {
         "/cattle": {
             "get": {
-                "description": "Delete one cattle",
+                "description": "Show one cattle",
                 "consumes": [
                     "application/json"
                 ],
@@ -33,8 +33,13 @@ const docTemplate = `{
                         "type": "string",
                         "description": "Cattle identification",
                         "name": "id",
-                        "in": "query",
-                        "required": true
+                        "in": "query"
+                    },
+                    {
+                        "type": "string",
+                        "description": "Cattle earring",
+                        "name": "earring",
+                        "in": "query"
                     }
                 ],
                 "responses": {
