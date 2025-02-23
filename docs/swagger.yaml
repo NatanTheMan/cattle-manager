@@ -29,6 +29,13 @@ definitions:
       message:
         type: string
     type: object
+  handler.ShowCattleResponse:
+    properties:
+      data:
+        $ref: '#/definitions/schemas.CattleResponse'
+      message:
+        type: string
+    type: object
   schemas.CattleResponse:
     properties:
       createdAt:
@@ -80,6 +87,34 @@ paths:
           schema:
             $ref: '#/definitions/handler.ErrorResponse'
       summary: Delete cattle
+      tags:
+      - Cattle
+    get:
+      consumes:
+      - application/json
+      description: Delete one cattle
+      parameters:
+      - description: Cattle identification
+        in: query
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.ShowCattleResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Show cattle
       tags:
       - Cattle
     post:

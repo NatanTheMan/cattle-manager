@@ -38,3 +38,8 @@ type DeleteCattleResponse struct {
 	Message string                 `json:"message"`
 	Data    schemas.CattleResponse `json:"data"`
 }
+
+type ShowCattleResponse struct {
+	Message string                 `json:"message"`
+	Data    schemas.CattleResponse `json:"data"`
+}
