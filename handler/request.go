@@ -19,6 +19,9 @@ func (r *CreateCattleRequest) Validate() error {
 	if r.Gender == "" {
 		return errParamIsRequired("gender", "string")
 	}
+	if len(r.Gender) > 1 {
+		return fmt.Errorf("gender must have 1 digits")
+	}
 	if r.Earring == "" {
 		return errParamIsRequired("erring", "string")
 	}
