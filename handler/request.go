@@ -2,6 +2,7 @@ package handler
 
 import (
 	"fmt"
+	"strconv"
 	"strings"
 )
 
@@ -25,14 +26,18 @@ func (r *CreateCattleRequest) Validate() error {
 	if len(r.Gender) > 1 {
 		return fmt.Errorf("gender must have 1 digits")
 	}
-  if strings.ToUpper(r.Gender) != "M" &&strings.ToUpper(r.Gender)!="F"{
-    return fmt.Errorf("gender have to be 'M' or 'F'")
-  }
+	if strings.ToUpper(r.Gender) != "M" && strings.ToUpper(r.Gender) != "F" {
+		return fmt.Errorf("gender have to be 'M' or 'F'")
+	}
 	if r.Earring == "" {
 		return errParamIsRequired("erring", "string")
 	}
 	if len(r.Earring) < 6 || len(r.Earring) > 6 {
 		return fmt.Errorf("earring must have 6 digits")
+	}
+	_, err := strconv.Atoi(r.Earring)
+	if err != nil {
+		return fmt.Errorf("earring have to be a number")
 	}
 	return nil
 }
